@@ -2,6 +2,7 @@
 
 import os
 import csv
+import statistics
 
 csvpath = os.path.join('..', 'PyBank', 'budget_data.csv')
 
@@ -27,23 +28,40 @@ for row in PL:
     PL_sum = PL_sum + int(row)
 
 
-# The average of the changes in "Profit/Losses" over the entire period
-# Formula: Sum of (previous PL - new PL)/ total number
+# Compute for the average, greatest increase and decrease in profits
+
+x = 0
+max_value = 0
+min_value = 0
+ind = 0
+max_value_index = 0
+min_value_index = 0
 
 change_profit = []
 for row in PL:
-    change_profit_difference =  PL[row]
-    change_profit.append(change_profit_difference)
+    row = int(row)
+    diff = row - x
+    if max_value < diff:
+        max_value = diff
+        max_value_index = ind
+    if min_value > diff:
+        min_value = diff
+        min_value_index = ind
+    ind += 1
+    x = row
+    change_profit.append(diff)
+    
+change_profit = change_profit[1:]
+PL_Average = statistics.mean(change_profit)
 
-print(change_profit_difference)
-
-# The greatest increase in profits (date and amount) over the entire period
-
-# The greatest decrease in losses (date and amount) over the entire perio
+max_date = months[max_value_index]
+min_date = months[min_value_index]
 
 # Output
-# print("Financial Analysis")
-# print("---------------------------------------")
-# print(f"Total Months: {months_count}")
-# print(f"Total: ${PL_sum}")
-# print(f"Average Change: {PL_sum.average()}")
+print("Financial Analysis")
+print("---------------------------------------")
+print(f"Total Months: {months_count}")
+print(f"Total: ${PL_sum}")
+print(f"Average Change: ${PL_Average}")
+print(f"Greatest Increase in Profits: {max_date} (${max_value})")
+print(f"Greatest Decrease in Profits: {min_date} (${min_value})")
