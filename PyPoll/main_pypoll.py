@@ -2,7 +2,6 @@
 
 import os
 import csv
-import statistics
 
 csvpath = os.path.join('..', 'PyPoll', 'election_data.csv')
 
@@ -53,10 +52,10 @@ poll_count = {"Khan": khan_count, "Correy": correy_count, "Li": li_count, "O'Too
 # The percentage of votes each candidate won
 
 total_votes = khan_count + correy_count + li_count + otooley_count
-khan_percent = (khan_count/ total_votes) * 100
-correy_percent = (correy_count / total_votes) * 100
-li_percent = (li_count / total_votes) * 100
-otooley_percent = (otooley_count / total_votes) * 100
+khan_percent = format((khan_count/ total_votes), "%")
+correy_percent = format((correy_count / total_votes), "%")
+li_percent = format((li_count / total_votes), "%")
+otooley_percent = format((otooley_count / total_votes), "%")
 
 
 # # The winner of the election based on popular votes
