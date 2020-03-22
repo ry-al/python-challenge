@@ -1,5 +1,7 @@
 # Python Homework
 
+f = open("main_pypoll.txt", "w+")
+
 import os
 import csv
 
@@ -104,3 +106,5 @@ print("-------------------------------")
 # -------------------------
 # Winner: Khan
 # -------------------------
+
+f.close()

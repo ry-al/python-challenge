@@ -1,5 +1,7 @@
 # Python Homework
 
+f = open("main_pybank.txt", "w+")
+
 import os
 import csv
 import statistics
@@ -65,3 +67,6 @@ print(f"Total: ${PL_sum}")
 print(f"Average Change: ${PL_Average}")
 print(f"Greatest Increase in Profits: {max_date} (${max_value})")
 print(f"Greatest Decrease in Profits: {min_date} (${min_value})")
+
+
+f.close()
